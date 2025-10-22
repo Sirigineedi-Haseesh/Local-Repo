@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Hello — Sample Web App</title>
+    <meta name="description" content="A small sample web app with HTML, CSS and a little JavaScript." />
+    <style>
+        :root{
+            --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#4fc3f7;
+            --glass: rgba(255,255,255,0.03);
+            --radius:12px; --maxw:1100px;
+            --ff: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:var(--ff);
+            background:
+                radial-gradient(1000px 600px at 10% 10%, rgba(79,195,247,0.06), transparent 6%),
+                radial-gradient(900px 500px at 95% 90%, rgba(79,195,247,0.03), transparent 8%),
+                var(--bg);
+            color:#e6eef6;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            padding:32px 16px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .app{
+            width:100%;
+            max-width:var(--maxw);
+            display:grid;
+            gap:20px;
+            grid-template-columns: 1fr;
+        }
+
+        header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:12px;
+        }
+        .brand{
+            display:flex;
+            gap:12px;
+            align-items:center;
+        }
+        .logo{
+            width:48px;height:48px;
+            display:grid;place-items:center;
+            background:linear-gradient(135deg,var(--accent),#2fb6df);
+            border-radius:10px;
+            box-shadow:0 6px 18px rgba(15,23,36,0.6);
+            color:#06202a;
+            font-weight:700;
+        }
+        h1{font-size:1.1rem;margin:0}
+        p.lead{margin:0;color:var(--muted);font-size:0.94rem}
+
+        nav{display:flex;gap:10px;align-items:center}
+        .btn{
+            background:transparent;border:1px solid rgba(255,255,255,0.06);
+            color:var(--accent);padding:8px 12px;border-radius:10px;
+            text-decoration:none;font-weight:600;font-size:0.9rem;
+        }
+        .hero{
+            background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+            border-radius:var(--radius);
+            padding:28px;
+            display:grid;
+            grid-template-columns: 1fr 340px;
+            gap:20px;
+            align-items:center;
+            box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+            backdrop-filter: blur(6px);
+        }
+        .hero-left h2{margin:0 0 8px 0;font-size:1.35rem}
+        .hero-left p{margin:0 0 18px;color:var(--muted)}
+
+        .cards{
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:12px;
+            margin-top:12px;
+        }
+        .card{
+            background:var(--card);
+            padding:14px;border-radius:12px;
+            box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+        }
+        .card h3{margin:0 0 8px 0;font-size:0.98rem}
+        .card p{margin:0;color:var(--muted);font-size:0.9rem}
+
+        form{
+            display:flex;flex-direction:column;gap:8px;
+            background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+            padding:16px;border-radius:12px;
+        }
+        input[type="text"], input[type="email"], textarea{
+            background:var(--glass);border:1px solid rgba(255,255,255,0.03);
+            color:inherit;padding:10px;border-radius:8px;
+            outline:none;font-size:0.95rem;
+        }
+        textarea{min-height:90px;resize:vertical}
+        .row{display:flex;gap:8px}
+        .row > *{flex:1}
+        .submit{
+            display:inline-flex;align-items:center;gap:8px;
+            background:var(--accent);color:#042028;border:none;padding:10px 12px;border-radius:10px;
+            cursor:pointer;font-weight:700;
+        }
+
+        footer{
+            color:var(--muted);font-size:0.88rem;padding:12px 0 0 0;
+            display:flex;justify-content:space-between;align-items:center;
+        }
+
+        @media (max-width:900px){
+            .hero{grid-template-columns:1fr}
+            .cards{grid-template-columns:repeat(2,1fr)}
+        }
+        @media (max-width:560px){
+            .cards{grid-template-columns:1fr}
+            header{flex-direction:column;align-items:flex-start;gap:12px}
+            nav{width:100%;justify-content:space-between}
+        }
+    </style>
+</head>
+<body>
+    <main class="app" role="main">
+        <header>
+            <div class="brand">
+                <div class="logo">Hi</div>
+                <div>
+                    <h1>Sample Web App version 1</h1>
+                    <p class="lead">A minimal front-end template with HTML, CSS and JS</p>
+                </div>
+            </div>
+            <nav aria-label="Main">
+                <a class="btn" href="#features">Features</a>
+                <a class="btn" href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section class="hero" aria-labelledby="welcome">
+            <div class="hero-left">
+                <h2 id="welcome">Build fast — ship faster</h2>
+                <p>Responsive layout, accessible form, simple components and lightweight JavaScript to handle interactions. Use this as a starting point for a small app or landing page.</p>
+
+                <div class="cards" id="features" aria-live="polite">
+                    <article class="card">
+                        <h3>Responsive</h3>
+                        <p>Grid and flex layouts that adapt to phones, tablets and desktops.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Accessible</h3>
+                        <p>Semantic markup and sensible defaults for forms and navigation.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Lightweight</h3>
+                        <p>Small CSS footprint and a simple script for form handling.</p>
+                    </article>
+                </div>
+
+            </div>
+
+            <aside>
+                <form id="contact" aria-labelledby="contact-title">
+                    <h3 id="contact-title">Get in touch</h3>
+                    <input type="text" id="name" placeholder="Your name" required />
+                    <input type="email" id="email" placeholder="you@example.com" required />
+                    <textarea id="message" placeholder="Short message"></textarea>
+                    <div style="display:flex;gap:8px;align-items:center;justify-content:space-between">
+                        <button type="button" class="submit" id="submit">Send</button>
+                        <small id="status" style="color:var(--muted)">No submissions yet</small>
+                    </div>
+                </form>
+            </aside>
+        </section>
+
+        <footer>
+            <div>© <span id="year"></span> Sample Web App</div>
+            <div style="color:var(--muted)">Made with HTML & CSS</div>
+        </footer>
+    </main>
+
+    <script>
+        // Small interaction: save contact form to localStorage and show status
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const submit = document.getElementById('submit');
+        const status = document.getElementById('status');
+
+        submit.addEventListener('click', () => {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email) {
+                status.textContent = 'Name and email are required';
+                status.style.color = '#ff9b9b';
+                return;
+            }
+
+            const entry = { id: Date.now(), name, email, message };
+            const list = JSON.parse(localStorage.getItem('contacts') || '[]');
+            list.unshift(entry);
+            localStorage.setItem('contacts', JSON.stringify(list));
+
+            status.textContent = 'Message saved locally ✔';
+            status.style.color = '#9ff3c5';
+
+            // simple feedback and clear message
+            document.getElementById('message').value = '';
+            setTimeout(() => {
+                status.textContent = `Saved (${list.length})`;
+                status.style.color = '';
+            }, 1200);
+        });
+    </script>
+</body>
+</html>
